@@ -33,41 +33,53 @@ function generateOpenApiSchema($routesFilePath, $outputFilePath) {
         exit(1);
     }
 
-    $routes = file($routesFilePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    // Read and preprocess the file
+    $routes = file_get_contents($routesFilePath);
+    $compressedRoutes = preg_replace('/\s+/', ' ', $routes); // Remove extra spaces and newlines
 
-    foreach ($routes as $route) {
-        if (preg_match('/Route::([a-z]+)\(\'\/(.*?)\', \[(.*?)::class, \'(.*?)\'\]\)(?:.*?->description\(\'(.*?)\'\))?/', $route, $matches)) {
-            $method = strtolower($matches[1]);
-            $path = "/" . trim($matches[2], "/");
-            $controller = $matches[3];
-            $action = $matches[4];
-            $description = $matches[5] ?? "No description available.";
+    // Updated regex to capture description properly
+    preg_match_all(
+        "/Route::([a-z]+)\s*\(\s*'\/([^']*)'\s*,\s*\[(.*?)::class,\s*'(.*?)'\]\)\s*(?:->name\('([^']+)'\))?\s*(?:->description\('([^']+)'\))?/i",
+        $compressedRoutes,
+        $matches,
+        PREG_SET_ORDER
+    );
 
-            // Build OpenAPI path
-            $pathItem = [
-                $method => [
-                    "summary" => ucfirst($method) . " " . $path,
-                    "operationId" => $action,
-                    "description" => $description,
-                    "parameters" => [],
-                    "responses" => [
-                        "200" => [
-                            "description" => "Successful operation",
-                            "content" => [
-                                "application/json" => [
-                                    "schema" => [
-                                        "type" => "object"
-                                    ]
+    foreach ($matches as $match) {
+        $method = strtolower($match[1]); // HTTP method
+        $path = "/" . trim($match[2], "/"); // Route path
+        $controller = $match[3]; // Controller class
+        $action = $match[4]; // Controller method
+        $name = $match[5] ?? ""; // Optional route name
+        $description = $match[6] ?? "No description available."; // Optional description
+
+        // Debug output
+        echo "Matched Route: Method = $method, Path = $path, Description = $description\n";
+
+        // Build OpenAPI path entry
+        $pathItem = [
+            $method => [
+                "summary" => ucfirst($method) . " " . $path,
+                "operationId" => $action,
+                "description" => $description,
+                "parameters" => [],
+                "responses" => [
+                    "200" => [
+                        "description" => "Successful operation",
+                        "content" => [
+                            "application/json" => [
+                                "schema" => [
+                                    "type" => "object"
                                 ]
                             ]
                         ]
                     ]
                 ]
-            ];
+            ]
+        ];
 
-            // Add the path to the OpenAPI schema
-            $openApiTemplate["paths"][$path] = $pathItem;
-        }
+        // Add to OpenAPI paths
+        $openApiTemplate["paths"][$path] = $pathItem;
     }
 
     file_put_contents($outputFilePath, json_encode($openApiTemplate, JSON_PRETTY_PRINT));
