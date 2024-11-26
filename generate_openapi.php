@@ -54,7 +54,7 @@ function generateOpenApiSchema($routesFilePath, $outputFilePath) {
         $description = $match[6] ?? "No description available."; // Optional description
 
         // Debug output
-        echo "Matched Route: Method = $method, Path = $path, Description = $description\n";
+        # echo "Matched Route: Method = $method, Path = $path, Description = $description\n";
 
         // Build OpenAPI path entry
         $pathItem = [
