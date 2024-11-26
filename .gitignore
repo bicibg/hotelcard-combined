@@ -1,0 +1,13 @@
+# Ignore ApiGateway and CommonService directories
+ApiGateway/
+CommonService/
+
+# Other common Laravel ignores
+/vendor/
+node_modules/
+.env
+/public/storage
+/storage/*.key
+*.log
+*.cache
+
