@@ -1,0 +1,219 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Laravel API Documentation",
+        "description": "Auto-generated API documentation.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http:\/\/localhost:8000",
+            "description": "Local development server"
+        }
+    ],
+    "paths": {
+        "\/check-overseas\/{id}": {
+            "get": {
+                "summary": "Get \/check-overseas\/{id}",
+                "operationId": "checkOverseas",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/name-for-es\/{id}": {
+            "get": {
+                "summary": "Get \/name-for-es\/{id}",
+                "operationId": "getNameForEs",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/all": {
+            "get": {
+                "summary": "Get \/all",
+                "operationId": "getAllCurrencies",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/dropdown": {
+            "get": {
+                "summary": "Get \/dropdown",
+                "operationId": "dropdown",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/code\/{code}": {
+            "get": {
+                "summary": "Get \/code\/{code}",
+                "operationId": "findByCode",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/{id}": {
+            "get": {
+                "summary": "Get \/{id}",
+                "operationId": "show",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/rate": {
+            "get": {
+                "summary": "Get \/rate",
+                "operationId": "getCurrencyRate",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/rates": {
+            "get": {
+                "summary": "Get \/rates",
+                "operationId": "getCurrencyRates",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/rate\/by-date": {
+            "get": {
+                "summary": "Get \/rate\/by-date",
+                "operationId": "getCurrencyRateByDate",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/rounding-value": {
+            "get": {
+                "summary": "Get \/rounding-value",
+                "operationId": "getCurrencyRoundingValue",
+                "description": "No description available.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": []
+    }
+}

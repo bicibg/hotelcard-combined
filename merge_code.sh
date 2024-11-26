@@ -5,7 +5,7 @@ PROJECT_PATH=$1
 REPO_PATH="." # Replace with the local path to your Git repo
 PROJECT_NAME=$(basename "$PROJECT_PATH") # Extract the directory name
 OUTPUT_FILE="$REPO_PATH/${PROJECT_NAME}.txt"
-OPENAPI_FILE="$REPO_PATH/openapi.json"
+OPENAPI_FILE="$PROJECT_PATH/openapi.json" # Place openapi.json in the project root
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 COMMIT_MESSAGE="Update ${PROJECT_NAME} file and OpenAPI schema - $TIMESTAMP"
 
@@ -55,70 +55,7 @@ echo "Combined Laravel project files into $OUTPUT_FILE"
 API_FILE="$PROJECT_PATH/routes/api.php"
 if [ -f "$API_FILE" ]; then
   echo "Generating OpenAPI schema from $API_FILE..."
-  
-  # Run PHP script inline to generate OpenAPI schema
-  php -r "
-  function generateOpenApiSchema(\$routesFilePath, \$outputFilePath) {
-      \$openApiTemplate = [
-          'openapi' => '3.1.0',
-          'info' => [
-              'title' => 'Laravel API Documentation',
-              'description' => 'Auto-generated API documentation.',
-              'version' => '1.0.0'
-          ],
-          'servers' => [
-              [
-                  'url' => 'http://localhost:8000',
-                  'description' => 'Local development server'
-              ]
-          ],
-          'paths' => [],
-          'components' => [
-              'schemas' => []
-          ]
-      ];
-
-      \$routes = file(\$routesFilePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-      foreach (\$routes as \$route) {
-          if (preg_match('/Route::([a-z]+)\\(\'\\/([^']*)\', \\[(.*?)::class, \'(.*?)\'\\]\\)(?:.*?->description\\(\'(.*?)\'\\))?/', \$route, \$matches)) {
-              \$method = strtolower(\$matches[1]);
-              \$path = '/' . trim(\$matches[2], '/');
-              \$controller = \$matches[3];
-              \$action = \$matches[4];
-              \$description = \$matches[5] ?? 'No description available.';
-
-              \$pathItem = [
-                  \$method => [
-                      'summary' => ucfirst(\$method) . ' ' . \$path,
-                      'operationId' => \$action,
-                      'description' => \$description,
-                      'parameters' => [],
-                      'responses' => [
-                          '200' => [
-                              'description' => 'Successful operation',
-                              'content' => [
-                                  'application/json' => [
-                                      'schema' => [
-                                          'type' => 'object'
-                                      ]
-                                  ]
-                              ]
-                          ]
-                      ]
-                  ]
-              ];
-
-              \$openApiTemplate['paths'][\$path] = \$pathItem;
-          }
-      }
-
-      file_put_contents(\$outputFilePath, json_encode(\$openApiTemplate, JSON_PRETTY_PRINT));
-  }
-
-  generateOpenApiSchema('$API_FILE', '$OPENAPI_FILE');
-  echo 'OpenAPI schema has been generated and saved to $OPENAPI_FILE.\n';
-  "
+  php generate_openapi.php "$API_FILE" "$OPENAPI_FILE"
 else
   echo "No api.php file found at $API_FILE. Skipping OpenAPI schema generation."
 fi
