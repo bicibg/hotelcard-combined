@@ -4295,6 +4295,7 @@ class CurrencyController extends Controller
             return $this->errorResponse('An unexpected error occurred while retrieving the currency rate by date.', 500);
         }
     }
+    
     /**
      * Get the rounding value for a specified currency.
      *
