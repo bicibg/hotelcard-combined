@@ -4025,7 +4025,7 @@ class CountryController extends Controller
     public function all(CountryRequest $request): JsonResponse
     {
         try {
-            $locale = $request->input('locale');
+            $locale = $request->query('locale');
             $countries = Country::orderBy('name', 'asc')->get();
 
             $data = $countries->map(fn($country) => [
@@ -4051,8 +4051,8 @@ class CountryController extends Controller
     public function show(CountryRequest $request): JsonResponse
     {
         try {
-            $locale = $request->input('locale');
-            $id = $request->input('id');
+            $locale = $request->query('locale');
+            $id = $request->query('id');
 
             $country = Country::findOrFail($id);
 
@@ -4079,8 +4079,8 @@ class CountryController extends Controller
     public function findByCode(CountryCodeRequest $request): JsonResponse
     {
         try {
-            $locale = $request->input('locale');
-            $code = $request->input('code');
+            $locale = $request->query('locale');
+            $code = $request->query('code');
 
             $country = Country::where('code', $code)->firstOrFail();
 
@@ -4107,7 +4107,7 @@ class CountryController extends Controller
     public function dropdown(CountryDropdownRequest $request): JsonResponse
     {
         try {
-            $locale = $request->input('locale');
+            $locale = $request->query('locale');
             $countries = Country::orderBy('name', 'asc')->get();
 
             $data = $countries->map(fn($country) => [
@@ -4133,7 +4133,7 @@ class CountryController extends Controller
     public function checkOverseas(CountryCheckOverseasRequest $request): JsonResponse
     {
         try {
-            $id = $request->input('id');
+            $id = $request->query('id');
 
             $country = Country::findOrFail($id);
 
@@ -4166,7 +4166,7 @@ class CountryController extends Controller
     public function getNameForEs(CountryNameForEsRequest $request): JsonResponse
     {
         try {
-            $id = $request->input('id');
+            $id = $request->query('id');
             $country = Country::findOrFail($id);
             $nameForEs = $country->getNameForEs();
 
