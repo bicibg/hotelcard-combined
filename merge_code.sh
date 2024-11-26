@@ -2,13 +2,14 @@
 
 # Define the Laravel project directory and output file
 PROJECT_PATH=$1
-OUTPUT_FILE="combined_laravel_project.txt"
-REPO_PATH=$2
-COMMIT_MESSAGE=${3:-"Update combined Laravel project file"}
+REPO_PATH="." # Replace with the local path to your Git repo
+OUTPUT_FILE="$REPO_PATH/combined_laravel_project.txt"
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+COMMIT_MESSAGE="Update combined file - $TIMESTAMP"
 
-# Check if the project path and repo path are provided
-if [ -z "$PROJECT_PATH" ] || [ -z "$REPO_PATH" ]; then
-  echo "Usage: $0 <path-to-laravel-project> <path-to-repo> [commit-message]"
+# Check if the project path is provided
+if [ -z "$PROJECT_PATH" ]; then
+  echo "Usage: $0 <path-to-laravel-project>"
   exit 1
 fi
 
@@ -49,11 +50,13 @@ done < <(find "$PROJECT_PATH" "${EXCLUDE_FIND_PARAMS[@]}" -type f -print0)
 
 echo "Combined Laravel project files into $OUTPUT_FILE"
 
-# Move the combined file to the repository directory
-mv "$OUTPUT_FILE" "$REPO_PATH"
-
 # Change to the repository directory
 cd "$REPO_PATH" || exit
 
-# Add, commit, and push the changes to the
+# Add, commit, and push the changes to the remote repository
+git add "$OUTPUT_FILE"
+git commit -m "$COMMIT_MESSAGE"
+git push origin main
+
+echo "File pushed to https://github.com/bicibg/hotelcard-combined.git (main branch)"
 
