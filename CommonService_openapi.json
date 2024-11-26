@@ -16,7 +16,7 @@
             "get": {
                 "summary": "Get \/check-overseas\/{id}",
                 "operationId": "checkOverseas",
-                "description": "No description available.",
+                "description": "Check if the specified country is overseas.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -36,7 +36,7 @@
             "get": {
                 "summary": "Get \/name-for-es\/{id}",
                 "operationId": "getNameForEs",
-                "description": "No description available.",
+                "description": "Retrieve country names formatted for Elasticsearch.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -56,7 +56,7 @@
             "get": {
                 "summary": "Get \/all",
                 "operationId": "getAllCurrencies",
-                "description": "No description available.",
+                "description": "Retrieve all currencies.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -76,7 +76,7 @@
             "get": {
                 "summary": "Get \/dropdown",
                 "operationId": "dropdown",
-                "description": "No description available.",
+                "description": "Retrieve a dropdown list of countries for the specified locale.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -96,7 +96,7 @@
             "get": {
                 "summary": "Get \/code\/{code}",
                 "operationId": "findByCode",
-                "description": "No description available.",
+                "description": "Retrieve country details by country code for the specified locale.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -116,7 +116,7 @@
             "get": {
                 "summary": "Get \/{id}",
                 "operationId": "show",
-                "description": "No description available.",
+                "description": "Retrieve country details by ID for the specified locale.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -136,7 +136,7 @@
             "post": {
                 "summary": "Post \/rate",
                 "operationId": "getCurrencyRate",
-                "description": "No description available.",
+                "description": "Retrieve exchange rate between two currencies.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -156,7 +156,7 @@
             "post": {
                 "summary": "Post \/rates",
                 "operationId": "getCurrencyRates",
-                "description": "No description available.",
+                "description": "Retrieve all exchange rates between two currencies.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -176,7 +176,7 @@
             "post": {
                 "summary": "Post \/rate\/by-date",
                 "operationId": "getCurrencyRateByDate",
-                "description": "No description available.",
+                "description": "Retrieve exchange rate between two currencies by date.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -196,7 +196,7 @@
             "post": {
                 "summary": "Post \/rounding-value",
                 "operationId": "getCurrencyRoundingValue",
-                "description": "No description available.",
+                "description": "Retrieve the rounding value for a specified currency.",
                 "parameters": [],
                 "responses": {
                     "200": {
