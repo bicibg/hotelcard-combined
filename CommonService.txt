@@ -2552,7 +2552,7 @@ Route::get('/status', function () {
 // Country routes
 Route::prefix('country')->group(function () {
     // non Locale-specific routes. Make sure these before locale-specific routes
-    Route::get('/check-overseas/{id}', [CountryController::class, 'checkOverseas'])
+    Route::POST('/check-overseas/{id}', [CountryController::class, 'checkOverseas'])
         ->name('country.check-overseas')
         ->description('Check if the specified country is overseas.');
 
@@ -4295,7 +4295,7 @@ class CurrencyController extends Controller
             return $this->errorResponse('An unexpected error occurred while retrieving the currency rate by date.', 500);
         }
     }
-    
+
     /**
      * Get the rounding value for a specified currency.
      *
