@@ -5,7 +5,7 @@ PROJECT_PATH=$1
 REPO_PATH="." # Replace with the local path to your Git repo
 PROJECT_NAME=$(basename "$PROJECT_PATH") # Extract the directory name
 OUTPUT_FILE="$REPO_PATH/${PROJECT_NAME}.txt"
-OPENAPI_FILE="$REPO_PATH/${PROJECT_NAME}_openapi.json" # Name the OpenAPI schema after the project
+OPENAPI_FILE="$REPO_PATH/${PROJECT_NAME}_openapi.json" # Add _openapi to the filename
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 COMMIT_MESSAGE="Update ${PROJECT_NAME} file and OpenAPI schema - $TIMESTAMP"
 
