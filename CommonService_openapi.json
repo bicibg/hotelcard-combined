@@ -133,8 +133,8 @@
             }
         },
         "\/rate": {
-            "get": {
-                "summary": "Get \/rate",
+            "post": {
+                "summary": "Post \/rate",
                 "operationId": "getCurrencyRate",
                 "description": "No description available.",
                 "parameters": [],
@@ -153,8 +153,8 @@
             }
         },
         "\/rates": {
-            "get": {
-                "summary": "Get \/rates",
+            "post": {
+                "summary": "Post \/rates",
                 "operationId": "getCurrencyRates",
                 "description": "No description available.",
                 "parameters": [],
@@ -173,8 +173,8 @@
             }
         },
         "\/rate\/by-date": {
-            "get": {
-                "summary": "Get \/rate\/by-date",
+            "post": {
+                "summary": "Post \/rate\/by-date",
                 "operationId": "getCurrencyRateByDate",
                 "description": "No description available.",
                 "parameters": [],
@@ -193,8 +193,8 @@
             }
         },
         "\/rounding-value": {
-            "get": {
-                "summary": "Get \/rounding-value",
+            "post": {
+                "summary": "Post \/rounding-value",
                 "operationId": "getCurrencyRoundingValue",
                 "description": "No description available.",
                 "parameters": [],

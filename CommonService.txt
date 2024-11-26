@@ -2586,19 +2586,19 @@ Route::prefix('currency')->group(function () {
         ->name('currency.all')
         ->description('Retrieve all currencies.');
 
-    Route::get('/rate', [CurrencyController::class, 'getCurrencyRate'])
+    Route::post('/rate', [CurrencyController::class, 'getCurrencyRate'])
         ->name('currency.rate')
         ->description('Retrieve exchange rate between two currencies.');
 
-    Route::get('/rates', [CurrencyController::class, 'getCurrencyRates'])
+    Route::post('/rates', [CurrencyController::class, 'getCurrencyRates'])
         ->name('currency.rates')
         ->description('Retrieve all exchange rates between two currencies.');
 
-    Route::get('/rate/by-date', [CurrencyController::class, 'getCurrencyRateByDate'])
+    Route::post('/rate/by-date', [CurrencyController::class, 'getCurrencyRateByDate'])
         ->name('currency.rate-by-date')
         ->description('Retrieve exchange rate between two currencies by date.');
 
-    Route::get('/rounding-value', [CurrencyController::class, 'getCurrencyRoundingValue'])
+    Route::post('/rounding-value', [CurrencyController::class, 'getCurrencyRoundingValue'])
         ->name('currency.rounding-value')
         ->description('Retrieve the rounding value for a specified currency.');
 });
