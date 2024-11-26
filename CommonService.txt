@@ -2586,19 +2586,19 @@ Route::prefix('currency')->group(function () {
         ->name('currency.all')
         ->description('Retrieve all currencies.');
 
-    Route::post('/rate', [CurrencyController::class, 'getCurrencyRate'])
+    Route::get('/rate', [CurrencyController::class, 'getCurrencyRate'])
         ->name('currency.rate')
         ->description('Retrieve exchange rate between two currencies.');
 
-    Route::post('/rates', [CurrencyController::class, 'getCurrencyRates'])
+    Route::get('/rates', [CurrencyController::class, 'getCurrencyRates'])
         ->name('currency.rates')
         ->description('Retrieve all exchange rates between two currencies.');
 
-    Route::post('/rate/by-date', [CurrencyController::class, 'getCurrencyRateByDate'])
+    Route::get('/rate/by-date', [CurrencyController::class, 'getCurrencyRateByDate'])
         ->name('currency.rate-by-date')
         ->description('Retrieve exchange rate between two currencies by date.');
 
-    Route::post('/rounding-value', [CurrencyController::class, 'getCurrencyRoundingValue'])
+    Route::get('/rounding-value', [CurrencyController::class, 'getCurrencyRoundingValue'])
         ->name('currency.rounding-value')
         ->description('Retrieve the rounding value for a specified currency.');
 });
@@ -4254,8 +4254,8 @@ class CurrencyController extends Controller
      */
     public function getCurrencyRate(CurrencyRateRequest $request): JsonResponse
     {
-        $fromCurrency = strtoupper($request->input('from_currency'));
-        $toCurrency = strtoupper($request->input('to_currency'));
+        $fromCurrency = strtoupper($request->query('from_currency'));
+        $toCurrency = strtoupper($request->query('to_currency'));
 
         try {
             $rate = $this->currencyRepository->getLastFromToRate($fromCurrency, $toCurrency);
@@ -4275,9 +4275,9 @@ class CurrencyController extends Controller
      */
     public function getCurrencyRateByDate(CurrencyRateHistoryRequest $request): JsonResponse
     {
-        $fromCurrency = strtoupper($request->input('from_currency'));
-        $toCurrency = strtoupper($request->input('to_currency'));
-        $date = $request->input('date');
+        $fromCurrency = strtoupper($request->query('from_currency'));
+        $toCurrency = strtoupper($request->query('to_currency'));
+        $date = $request->query('date');
 
         try {
             $currencyRateObj = $this->currencyRepository->getCurrencyRateHistoryModel()
@@ -4305,7 +4305,7 @@ class CurrencyController extends Controller
     public function getCurrencyRoundingValue(CurrencyRoundingValueRequest $request): JsonResponse
     {
         try {
-            $currency = $request->input('currency');
+            $currency = $request->query('currency');
             $roundingValue = CurrencyService::ROUNDING_VALUES[$currency] ?? null; // Handle missing rounding value
 
             return $this->successResponse($roundingValue, 'Currency rounding value retrieved successfully');
@@ -4324,8 +4324,8 @@ class CurrencyController extends Controller
     public function getCurrencyRates(CurrencyRateRequest $request): JsonResponse
     {
         try {
-            $fromCurrency = strtoupper($request->input('from_currency'));
-            $toCurrency = strtoupper($request->input('to_currency'));
+            $fromCurrency = strtoupper($request->query('from_currency'));
+            $toCurrency = strtoupper($request->query('to_currency'));
 
             $response = $this->currencyRepository->getRates($fromCurrency, $toCurrency);
 

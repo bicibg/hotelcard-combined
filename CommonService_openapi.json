@@ -133,8 +133,8 @@
             }
         },
         "\/rate": {
-            "post": {
-                "summary": "Post \/rate",
+            "get": {
+                "summary": "Get \/rate",
                 "operationId": "getCurrencyRate",
                 "description": "Retrieve exchange rate between two currencies.",
                 "parameters": [],
@@ -153,8 +153,8 @@
             }
         },
         "\/rates": {
-            "post": {
-                "summary": "Post \/rates",
+            "get": {
+                "summary": "Get \/rates",
                 "operationId": "getCurrencyRates",
                 "description": "Retrieve all exchange rates between two currencies.",
                 "parameters": [],
@@ -173,8 +173,8 @@
             }
         },
         "\/rate\/by-date": {
-            "post": {
-                "summary": "Post \/rate\/by-date",
+            "get": {
+                "summary": "Get \/rate\/by-date",
                 "operationId": "getCurrencyRateByDate",
                 "description": "Retrieve exchange rate between two currencies by date.",
                 "parameters": [],
@@ -193,8 +193,8 @@
             }
         },
         "\/rounding-value": {
-            "post": {
-                "summary": "Post \/rounding-value",
+            "get": {
+                "summary": "Get \/rounding-value",
                 "operationId": "getCurrencyRoundingValue",
                 "description": "Retrieve the rounding value for a specified currency.",
                 "parameters": [],
