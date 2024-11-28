@@ -13,8 +13,8 @@
     ],
     "paths": {
         "\/check-overseas\/{id}": {
-            "post": {
-                "summary": "Post \/check-overseas\/{id}",
+            "get": {
+                "summary": "Get \/check-overseas\/{id}",
                 "operationId": "checkOverseas",
                 "description": "Check if the specified country is overseas.",
                 "parameters": [],

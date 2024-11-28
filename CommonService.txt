@@ -2552,7 +2552,7 @@ Route::get('/status', function () {
 // Country routes
 Route::prefix('country')->group(function () {
     // non Locale-specific routes. Make sure these before locale-specific routes
-    Route::POST('/check-overseas/{id}', [CountryController::class, 'checkOverseas'])
+    Route::GET('/check-overseas/{id}', [CountryController::class, 'checkOverseas'])
         ->name('country.check-overseas')
         ->description('Check if the specified country is overseas.');
 
